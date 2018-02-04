@@ -1,0 +1,28 @@
+Java SocketAddress() Constructor
+---------------------------------
+
+Syntax:- public SocketAddress();
+
+Example:- 
+
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+import java.net.DataInputStream;
+
+public class Main {
+  public static void main(String[] argv) throws Exception {
+    InetAddress addr = InetAddress.getByName("java.sun.com");
+    int port = 80;
+    SocketAddress ss = new InetSocketAddress(addr, port);
+
+    Socket s = new Socket();
+    int timeoutMs = 8000; // 8 seconds
+    s.connect(sockaddr, timeoutMs);
+    DataInputStream dis = new DataInputStream(s.getInputStream());
+    String str = (String)dis.readUTF();
+    System.out.println("message= "+str);
+    ss.close();  
+  }
+}
